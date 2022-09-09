@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { SaucesList } from './SaucesList';
+import { GamesList } from './GamesList';
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
 
 export const App = () => {
 
-	const [sauces, setSauces] = useState([]);
+	const [games, setGames] = useState([]);
 
-	async function fetchSauces(){
+	async function fetchGames(){
 		try {
-			const response = await fetch(`${apiURL}/sauces`);
-			const saucesData = await response.json();
+			const response = await fetch(`${apiURL}/games`);
+			const gamesData = await response.json();
 			
-			setSauces(saucesData);
+			setGames(gamesData);
 		} catch (err) {
 			console.log("Oh no an error! ", err)
 		}
 	}
 
 	useEffect(() => {
-		fetchSauces();
+		fetchGames();
 	}, []);
 
 	return (
 		<main>	
-      <h1>Sauce Store</h1>
-			<h2>All things 🔥</h2>
-			<SaucesList sauces={sauces} />
+      <h1>Board Game Warehouse</h1>
+			<h2>Current Inventory</h2>
+			<GamesList games={games} />
 		</main>
 	)
 }
