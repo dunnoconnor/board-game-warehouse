@@ -12,4 +12,15 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// GET /games/:id
+router.get("/:id", async (req, res, next) => {
+  try {
+    const games = await Game.findByPk(req.params.id);
+    res.send(games);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 module.exports = router;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { GamesList } from './GamesList';
-
-// import and prepend the api url to any fetch calls
 import apiURL from '../api';
+import { Routes, Route } from 'react-router-dom';
+import { GameDetail } from './GameDetail';
 
 export const App = () => {
 
@@ -25,9 +25,11 @@ export const App = () => {
 
 	return (
 		<main>	
-      <h1>Board Game Warehouse</h1>
-			<h2>Current Inventory</h2>
-			<GamesList games={games} />
+      	<h1>Board Game Warehouse</h1>
+			<Routes>
+				<Route path="/" element={<GamesList games={games}/>}/>
+				<Route path="/games/:id" element={<GameDetail/>}/>
+			</Routes>
 		</main>
 	)
 }

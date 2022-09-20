@@ -2,11 +2,11 @@ import React from 'react';
 import { Game } from './Game';
 
 export const GamesList = ({games}) => {
-	return <>
+	return <div className='flex-container'>
 		{
 			games.map((game, idx) => {
-				return <Game game={game} key={idx} />
+				return <Game className='Game' game={game} key={idx} />
 			})
 		}
-	</>
+	</div>
 } 
