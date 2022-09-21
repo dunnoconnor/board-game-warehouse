@@ -15,7 +15,7 @@ export const App = () => {
 			
 			setGames(gamesData);
 		} catch (err) {
-			console.log("Oh no an error! ", err)
+			console.error(err)
 		}
 	}
 
@@ -28,6 +28,7 @@ export const App = () => {
       	<h1>Board Game Warehouse</h1>
 			<Routes>
 				<Route path="/" element={<GamesList games={games}/>}/>
+				<Route path="/games" element={<GamesList games={games}/>}/>
 				<Route path="/games/:id" element={<GameDetail/>}/>
 			</Routes>
 		</main>
