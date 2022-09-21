@@ -19,7 +19,7 @@ export const EditGame = ({show,handleClose, game}) => {
                     <Form.Control type="text" placeholder={game.price} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formPrice">
+                <Form.Group className="mb-3" controlId="formStock">
                     <Form.Label>Stock</Form.Label>
                     <Form.Control type="text" placeholder={game.stcok} />
                 </Form.Group>

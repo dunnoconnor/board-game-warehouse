@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { GameDetail } from './GameDetail';
-import { EditGame } from './modals/editGame';
+import { EditGame } from './modals/EditGame';
 
 export const Game = ({game}) => {
   const [editModal, setEditModal] = useState(false);
