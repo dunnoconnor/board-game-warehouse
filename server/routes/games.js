@@ -12,6 +12,16 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// POST /games
+router.post("/", async (req, res, next) => {
+  try {
+    const game = await Game.create(req.body);
+    res.send(game);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // GET /games/:id
 router.get("/:id", async (req, res, next) => {
   try {
@@ -22,5 +32,29 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// UPDATE /games/:id
+router.put("/:id", async (req, res, next) => {
+  try {
+    const game = await Game.update(req.body, {
+      where: {id:req.params.id}
+    });
+    res.send(game);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+// DELETE /games/:id
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const games = await Game.destroy({
+      where: {id:req.params.id}
+    });
+    res.send(games);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
