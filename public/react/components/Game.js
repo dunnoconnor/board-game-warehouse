@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import { GameDetail } from './GameDetail';
+import { EditGame } from './modals/editGame';
 
 export const Game = ({game}) => {
+  const [editModal, setEditModal] = useState(false);
+  const handleClose = () => setEditModal(false);
+  const handleShow = () => setEditModal(true);
 
   return(
     <Card>
-      <a href={`/games/${game.id}`}>
-        <Card.Img src={game.image} alt={game.title}/>
-      </a>
-        <Card.Title>{game.title}</Card.Title>
-        <Card.Text>Published: {game.year}</Card.Text>
-        <Card.Text>Rating: {game.rating}</Card.Text>
-        <Card.Text>Price: {game.price}</Card.Text>
-        <Card.Text>In Stock: {game.stock}</Card.Text>
+      <GameDetail game={game}/>
+      <EditGame show={editModal} handleClose={handleClose} game={game}/>
+      <Button onClick={handleShow}>Edit</Button>
     </Card>
   )
 } 
