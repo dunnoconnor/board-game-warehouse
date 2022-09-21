@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GamesList } from './GamesList';
-import apiURL from '../api';
+import GameService from '../services/GameService';
 
 export const App = () => {
 
@@ -8,10 +8,8 @@ export const App = () => {
 
 	async function fetchGames(){
 		try {
-			const response = await fetch(`${apiURL}/games`);
-			const gamesData = await response.json();
-			
-			setGames(gamesData);
+			const response = await GameService.getAllgames();
+			setGames(response.data);
 		} catch (err) {
 			console.error(err)
 		}
