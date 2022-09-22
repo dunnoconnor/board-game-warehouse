@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import GameService from '../../services/GameService';
 
-export const DeleteGame = ({show, handleClose, game}) => {
+export const DeleteGameModal = ({show, handleClose, game}) => {
 
     const handleSubmit = (e) => {
         GameService.deleteGame(game.id);
@@ -19,8 +19,8 @@ export const DeleteGame = ({show, handleClose, game}) => {
             
             <Modal.Body>
             <Form onSubmit={handleSubmit}>
-                <Button variant="primary" onClick={handleClose}>Cancel</Button>
-                <Button variant="secondary" type="submit">Submit</Button>
+                <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                <Button variant="primary" type="submit">Submit</Button>
             </Form>
             </Modal.Body>
         </Modal>

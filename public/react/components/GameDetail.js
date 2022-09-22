@@ -5,7 +5,7 @@ export const GameDetail = ({game}) => {
 
   return(
     <Card>
-        <img src={game.image} alt={game.title}/>
+        <Card.Img src={game.image} alt={game.title}/>
         <Card.Title>{game.title}</Card.Title>
         <Card.Text>Published: {game.year}</Card.Text>
         <Card.Text>Rating: {game.rating}</Card.Text>

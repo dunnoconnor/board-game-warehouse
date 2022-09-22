@@ -1,28 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import GameService from '../../services/GameService';
+import { getBggThing } from 'bgg-xml-api-client';
 
-export const EditGame = ({show, handleClose, game}) => {
+export const AddGameModal = ({show, handleClose, bggItem}) => {
     
-    const initialState = game;
-    const [formState, setFormState]= useState(initialState)
+    const [game, setGame] = useState("");
+    const [formState, setFormState]= useState({})
+    
+    async function fetchBGGThing(){
+        try {
+            const { data } = await getBggThing({ id: bggItem.id });
+            setGame(data.item);
+          } catch (error) {
+            console.log('not found');
+          }
+    }
+
+    useEffect(() => {
+		fetchBGGThing();
+	}, [show]);
+
 
     const handleChange = (e) => {
-        setFormState({...formState, [e.target.id]: e.target.value})
+        setFormState({...formState, [e.target.id]: e.target.value});
     }
 
     const handleSubmit = () => {
-        GameService.updateGame(game.id, formState);
+        const newGame = {
+            title: game.name.value,
+            year: game.yearpublished.value,
+            image: game.image,
+            rating: game.rating,
+            price: formState.price,
+            description: game.description,
+            stock: formState.stock,
+        };
+        GameService.createGame(newGame);
         handleClose();
     }
-    
     
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>{`Editing ${game.title}`}</Modal.Title>
+                <Modal.Title>{`Adding ${bggItem.name.value} to warehouse`}</Modal.Title>
             </Modal.Header>
             
             <Modal.Body>

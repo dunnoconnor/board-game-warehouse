@@ -13,6 +13,7 @@
     "@babel/preset-react": "^7.14.5",
     "@popperjs/core": "^2.11.6",
     "axios": "^0.27.2",
+    "bgg-xml-api-client": "^0.1.10",
     "bootstrap": "^5.2.1",
     "cors": "^2.8.5",
     "dotenv": "16.0.0",
