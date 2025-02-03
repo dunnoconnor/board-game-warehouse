@@ -28,8 +28,8 @@ app.use((req, res) => {
 // error handling middleware
 app.use((error, req, res, next) => {
   console.error('SERVER ERROR: ', error);
-  if(res.statusCode < 400) res.status(500);
-  res.send({error: error.message, name: error.name, message: error.message, table: error.table});
+  const statusCode = error.statusCode || 500;
+  res.status(statusCode).send({ error: 'Internal Server Error' });
 });
 
 module.exports = app;
